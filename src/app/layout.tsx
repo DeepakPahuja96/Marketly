@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { NavbarClient } from '@/components/NavbarClient'
+import { buildInlinePublicEnvScript } from '@/lib/public-env.server'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <script dangerouslySetInnerHTML={{ __html: buildInlinePublicEnvScript() }} />
         <NavbarClient />
         <main className="min-h-screen bg-gray-50">
           {children}
